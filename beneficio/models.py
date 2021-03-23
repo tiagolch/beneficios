@@ -88,14 +88,14 @@ class Contrato(models.Model):
         return self.termino.strftime('%d/%m/%Y')
 
     def save(self, *args, **kwargs):
-        if self.tempoInicial:
-            self.limiteContratacao = self.limiteContratacaoPadrao - self.tempoInicial
-            self.termino += timedelta(days=self.tempoInicial)
-        else:
+        if self.tempoInicial <= self.limiteContratacaoPadrao:
             self.limiteContratacao = self.limiteContratacaoPadrao - self.tempoInicial
             temp = self.inicio
             temp += timedelta(days=self.tempoInicial)
             self.termino = temp
+        else:
+            self.tempoInicial = self.limiteContratacaoPadrao
+            self.limiteContratacao = self.limiteContratacaoPadrao - self.tempoInicial
         super().save(*args, **kwargs)
 
 
