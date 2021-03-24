@@ -38,6 +38,7 @@ class ProfissionalAdmin(admin.ModelAdmin):
 @admin.register(Contrato)
 class ContratoAdmin(admin.ModelAdmin):
     list_display = ['profissional', 'get_inicio', 'get_termino', 'tempoInicial', 'prorrogacao', 'limiteContratacao']
+    list_editable = ['tempoInicial', 'prorrogacao']
     search_fields = ['profissional']
 
 
@@ -51,13 +52,11 @@ class Informacoes_EscalaAdmin(admin.ModelAdmin):
 class SalarioAdmin(admin.ModelAdmin):
     list_display = ['base', 'adicional_tipo', 'adicional_valor', 'desconto_VT', 'desconto_VR', 'desconto_VA',
                     'adiantamento', 'liquido', 'comissao', 'bonus']
-    # list_filter = ['']
-
 
 
 @admin.register(Dia_de_Pagamento)
 class DiaDePagamentoAdmin(admin.ModelAdmin):
-    list_display = ['profissional', 'adiantamento', 'salario', 'comissao', 'bonus']
+    list_display = ['profissional', 'adiantamento', 'comissao', 'bonus']
 
 
 
