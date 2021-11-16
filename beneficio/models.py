@@ -162,7 +162,7 @@ class Salario(models.Model):
     def __str__(self):
         return str(self.base)
 
-     class Meta:
+    class Meta:
         verbose_name = 'Salário'
         verbose_name_plural = 'Salários'
 
