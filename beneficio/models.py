@@ -8,6 +8,11 @@ class Empresa_Cliente(models.Model):
 
     def __str__(self):
         return self.nome
+    
+    class Meta:
+        verbose_name = 'Cliente'
+        verbose_name_plural = 'Clientes'
+        ordering = ['nome']
 
 
 class Departamento(models.Model):
@@ -19,6 +24,8 @@ class Departamento(models.Model):
 
     class Meta:
         unique_together = ("nome", "codigo",)
+        verbose_name = 'Departamento'
+        verbose_name_plural = 'Departamentos'
 
 
 class Cargo(models.Model):
@@ -26,6 +33,10 @@ class Cargo(models.Model):
 
     def __str__(self):
         return self.cargo
+    
+    class Meta:
+        verbose_name = 'Cargo'
+        verbose_name_plural = 'Cargos'
 
 
 class Centro_de_Custo(models.Model):
@@ -33,6 +44,10 @@ class Centro_de_Custo(models.Model):
 
     def __str__(self):
         return self.centroDeCusto
+    
+    class Meta:
+        verbose_name = 'Centro de Custo'
+        verbose_name_plural = 'Centros de Custo'
 
 
 class banco(models.Model):
@@ -41,6 +56,10 @@ class banco(models.Model):
 
     def __str__(self):
         return self.banco
+    
+    class Meta:
+        verbose_name = 'Banco'
+        verbose_name_plural = 'Bancos'
 
 
 class Informacao_Pagamento(models.Model):
@@ -50,6 +69,10 @@ class Informacao_Pagamento(models.Model):
 
     def __str__(self):
         return f'{str(self.banco)} Agencia:{self.agencia} C/C:{self.cc}'
+
+    class Meta:
+        verbose_name = 'Informação de Pagamento'
+        verbose_name_plural = 'Informações de Pagamento'
 
 
 class Profissional(models.Model):
@@ -67,6 +90,10 @@ class Profissional(models.Model):
 
     def __str__(self):
         return self.nomeCompleto
+    
+    class Meta:
+        verbose_name = 'Profissional'
+        verbose_name_plural = 'Profissionais'
 
 
 class Contrato(models.Model):
@@ -101,6 +128,10 @@ class Contrato(models.Model):
             self.termino = temp
         super().save(*args, **kwargs)
 
+    class Meta:
+        verbose_name = 'Contrato'
+        verbose_name_plural = 'Contratos'
+
 
 class Informacoes_Escala(models.Model):
     escala = models.CharField(max_length=20, verbose_name='Escala')
@@ -110,6 +141,10 @@ class Informacoes_Escala(models.Model):
 
     def __str__(self):
         return self.escala
+
+    class Meta:
+        verbose_name = 'Informações Escala'
+        verbose_name_plural = 'Informações Escala'
 
 
 class Salario(models.Model):
@@ -127,6 +162,10 @@ class Salario(models.Model):
     def __str__(self):
         return str(self.base)
 
+     class Meta:
+        verbose_name = 'Salário'
+        verbose_name_plural = 'Salários'
+
 
 class Dia_de_Pagamento(models.Model):
     profissional = models.ForeignKey('Profissional', on_delete=models.CASCADE, db_column='nomeCompleto', related_name='nomeCompleto2')
@@ -138,4 +177,6 @@ class Dia_de_Pagamento(models.Model):
     def __str__(self):
         return str(self.adiantamento)
 
-
+    class Meta:
+        verbose_name = 'Dia de Pagamento'
+        verbose_name_plural = 'Dias de Pagamento'
